@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post" class="bg-box" >
+        <div>
+            <input autocomplete="off" autofocus class="form" name="username" placeholder="Username" type="text">
+        </div>
+        <div>
+            <input name="password" class="form" placeholder="Password" type="password">
+        </div>
+        <button class="btn form " type="submit">Log In</button>
+        {%if error%}
+        <p class="error-message" class="btn">{{error}}</p>
+        {% endif %}
+        <a href="/register" class="form">Don't have an account? Click to Register!</p>
+    </form>
+{% endblock %}
+<!--<script>
+    if(error){
+        document.getElementById("form").style.border = 1px solid red;
+    }
+    else{
+        document.getElementById("form").style.border = 1px solid black;
+    }
+    </script>-->

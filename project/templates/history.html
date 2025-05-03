@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+   {% if transactions %}
+   <div id="loading">
+   <h2 style="text-align:center; padding: 10px;">History</h2>
+   <table>
+       <thead>
+               <th>Name</th>
+               <th>Number of Shares</th>
+               <th>Price</th>
+               <th>Total</th>
+               <th>TimeStamp</th>
+               <th>Status</th>
+       </thead>
+       <tbody>
+           {% for row in transactions%}
+           <tr class="table-row">
+               <td>{{row.symbol}}</td>
+               <td>{{row.shares}}</td>
+               <td>{{row.price | usd}}</td>
+               <td>{{row.total | usd}}</td>
+               <td>{{row.timestamp}}</td>
+               {%if row.shares < 0 %}
+               <td style="color:red">SOLD</td>
+                {% else %}
+                <td style="color:green">On Hold</td>
+                {% endif%}
+           </tr>
+           {% endfor %}
+
+</div>
+{% else %}
+<p>You have not bought any Stock before</p>
+{% endif %}
+
+
+{% endblock %}
+<!--<script>
+    if(error){
+        document.getElementById("form").style.border = 1px solid red;
+    }
+    else{
+        document.getElementById("form").style.border = 1px solid black;
+    }
+    </script>-->

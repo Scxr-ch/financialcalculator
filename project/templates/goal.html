@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Goal
+{% endblock %}
+
+{% block main %}
+<div class="section" id="loading">
+    <h1>Goal</h1>
+    <form action="/goal" method="post">
+        <div>
+            <input autocomplete="off" autofocus class="form" name="goal" placeholder="Target Amount" type="text" style="width:100%;margin-bottom:30px;">
+            <input type="number" placeholder ="Number of Years"class="form" name="years"style="width:100%;margin-bottom:30px;">
+        </div>
+        <p class="error-message" class="btn">{{error}}</p>
+        <button class="btn form" type="submit"style="border-radius:10px;width:80%">Submit</button>
+    </form>
+    {% if amount%}
+    <div class="loading" >
+        <h2 class="delay-1">You would need to save ${{amount}} each month, </h2>
+        <h2 class="delay-2" style="text-align:center;">By earning {{interest}}% p.a</h2>
+        </div>
+    {% endif %}
+{% endblock %}

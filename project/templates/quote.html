@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+<div class="section" id="loading">
+    <h1>Quote</h1>
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form" name="symbol" placeholder="Symbol" type="text" style="width:100%;margin-bottom:30px;">
+        </div>
+        <p class="error-message" class="btn">{{error}}</p>
+        <button class="btn form" type="submit"style="border-radius:10px;width:80%">Submit</button>
+    </form>
+    {% if stock%}
+    <div >
+        <h2>Stock Information</h2>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Symbol</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.price | usd}}</td>
+                    <td>{{ stock.symbol }}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

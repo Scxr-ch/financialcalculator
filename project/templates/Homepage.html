@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+<div class="homepage" id="loading">
+    <h1>hello, {{username}}</h1>
+    <p>current balance:</p>
+   <h2>{{cash}}</h2>
+   {% if holdings %}
+   <h3>Recent Transactions</h3>
+   <table>
+       <thead>
+           <tr>
+               <th>Name</th>
+               <th>Number of Shares</th>
+               <th>Price</th>
+               <th>Total</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for row in holdings%}
+           <tr >
+               <td>{{row.symbol}}</td>
+               <td>{{row.shares}}</td>
+               <td>{{row.price | usd}}</td>
+               <td>{{row.total | usd}}</td>
+           </tr>
+           {% endfor %}
+
+</div>
+{% endif %}
+
+{% endblock %}
+<!--<script>
+    if(error){
+        document.getElementById("form").style.border = 1px solid red;
+    }
+    else{
+        document.getElementById("form").style.border = 1px solid black;
+    }
+    </script>-->

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post" class="section" id="loading">
+        <h2>SeLL</h2>
+            <table>
+            <thead>
+                <td>Stock</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Sell</td>
+                </thead>
+            {% for symbol in update %}
+            <tr class="table-row">
+                {%if symbol.shares >0 %}
+                <td value = "{{symbol.symbol}}">{{symbol.symbol}}</td>
+                <td value = "{{symbol.shares}}" name="symbol">{{symbol.shares}}</td>
+                <td value = "{{symbol.price}}">{{symbol.price}}</td>
+                <td><input autocomplete="off" autofocus class="form" name="shares_{{loop.index}}" placeholder="Number of Shares" type="number" max="{{symbol.shares}}" value ="0" min ="0"></td>
+                {%endif%}
+            {% endfor%}
+        </table>
+        <button class="btn form" type="submit" style="margin-top:20px;">Submit</button>
+    </form>
+{% endblock %}
